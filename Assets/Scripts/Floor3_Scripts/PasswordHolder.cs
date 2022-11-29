@@ -5,7 +5,7 @@ using UnityEngine;
 public class PasswordHolder : MonoBehaviour
 {
     [SerializeField] private List<int> pieceNums;
-    //[SerializeField] private Door lockedDoor;
+    [SerializeField] private LaserDoor lockedDoor;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,8 @@ public class PasswordHolder : MonoBehaviour
     {
         yield return new WaitUntil(() => foundAllPieces());
         //lockedDoor.unlock();
-        Debug.Log("Unlocked Door");
+        //Debug.Log("Unlocked Door");
+        lockedDoor.setOpen(true);
     }
 
     private bool foundAllPieces()
