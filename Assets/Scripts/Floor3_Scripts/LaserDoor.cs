@@ -25,8 +25,15 @@ public class LaserDoor : MonoBehaviour
         else
         {
             isOpen = isOpenTopDownStart;
+            StartCoroutine(changeInFirstPerson());
         }
         setOpen(isOpen);
+    }
+
+    private IEnumerator changeInFirstPerson()
+    {
+        yield return new WaitUntil(() => player.isFirstPov);
+        setOpen(isOpenFirstPersonStart);
     }
 
     // Update is called once per frame

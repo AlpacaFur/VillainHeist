@@ -3,29 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using movement_and_Camera_Scripts;
 
-public class FirstPersonOnlyObj : MonoBehaviour
+public class HideShowEscape : MonoBehaviour
 {
+    [SerializeField] private bool showInEscape;
     private PlayerController player;
-    private bool show = false;
-
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        gameObject.SetActive(!showInEscape);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        showInFirstPerson();
-        gameObject.SetActive(show); 
-    }
-
-    private IEnumerator showInFirstPerson()
-    {
-        yield return new WaitUntil(() => player.isFirstPov);
-        show = true;
-        gameObject.SetActive(true);
+        player.StartCoroutine(hideShowOnEscape());
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private IEnumerator hideShowOnEscape()
+    {
+        yield return new WaitUntil(() => player.isFirstPov);
+        gameObject.SetActive(showInEscape);
     }
 }
