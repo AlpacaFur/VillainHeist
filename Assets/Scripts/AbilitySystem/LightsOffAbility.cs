@@ -1,62 +1,63 @@
-using System.Collections;
-using System.Collections.Generic;
 using Lighting_Scripts;
 using UnityEngine;
 
-public class LightsOffAbility : SelectableObjectAbility
+namespace AbilitySystem
 {
-    [SerializeField] private string name = "Lights Off Ability";
-    [SerializeField] private Sprite icon;
-    [SerializeField] private string tag = "Selectable";
-
-    public override AbilityInputs.AbilityType abilityType1stPerson()
+    public class LightsOffAbility : SelectableObjectAbility
     {
-        return AbilityInputs.AbilityType.Shootable;
-    }
+        [SerializeField] private string name = "Lights Off Ability";
+        [SerializeField] private Sprite icon;
+        [SerializeField] private string tag = "Selectable";
 
-    public override AbilityInputs.AbilityType abilityType3rdPerson()
-    {
-        return AbilityInputs.AbilityType.Clickable;
-    }
-
-    public override string appliedToTag()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void ApplyTo(GameObject spot)
-    {
-        OvalLightController spotsLight;
-        if (spot.TryGetComponent(out spotsLight))
+        public override AbilityInputs.AbilityType abilityType1stPerson()
         {
-            spotsLight.ToggleLight();
+            return AbilityInputs.AbilityType.Shootable;
         }
-    }
 
-    public override Sprite GetIcon()
-    {
-        return icon;
-    }
+        public override AbilityInputs.AbilityType abilityType3rdPerson()
+        {
+            return AbilityInputs.AbilityType.Clickable;
+        }
 
-    public override string GetName()
-    {
-        return name;
-    }
+        public override string appliedToTag()
+        {
+            throw new System.NotImplementedException();
+        }
 
-    public override string selectableTag()
-    {
-        return tag;
-    }
+        public override void ApplyTo(GameObject spot)
+        {
+            OvalLightController spotsLight;
+            if (spot.TryGetComponent(out spotsLight))
+            {
+                spotsLight.ToggleLight();
+            }
+        }
 
-    // Start is called before the first frame update
-    void Start()
-    {
+        public override Sprite GetIcon()
+        {
+            return icon;
+        }
+
+        public override string GetName()
+        {
+            return name;
+        }
+
+        public override string selectableTag()
+        {
+            return tag;
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
         
-    }
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
+        // Update is called once per frame
+        void Update()
+        {
         
+        }
     }
 }

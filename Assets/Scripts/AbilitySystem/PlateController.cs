@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using areas_and_respawn;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace AbilitySystem
@@ -9,16 +12,15 @@ namespace AbilitySystem
         [SerializeField] [Tooltip("Block to trigger event when placed.")]
         private GrabbableItem key;
         
-        private LockedDoorAidan _lock;
+        private readonly List<LockedDoorAidan> _locks = new();
 
         [SerializeField] [Tooltip("Invert the state for when block is placed.")]
         private bool inverted;
 
         private bool _triggered;
-        
-        // Start is called before the first frame update
-        void Start()
-        { 
+
+        protected override void Initialize()
+        {
             _triggered = inverted;
         }
 
@@ -29,6 +31,7 @@ namespace AbilitySystem
                 if (grabbable == key)
                 {
                     _triggered = true ^ inverted;
+                    Renderer.material = selectedMaterial;
                 }
             }
         }
@@ -36,17 +39,21 @@ namespace AbilitySystem
         private void OnCollisionExit(Collision collision)
         {
             _triggered = false ^ inverted;
+            Renderer.material = RegularMaterial;
         }
 
         // Update is called once per frame
         void Update()
         {
-            _lock.TryUnlock();
+            foreach (LockedDoorAidan lockedDoor in _locks)
+            {
+                lockedDoor.TryUnlock();
+            }
         }
 
-        public void SetDoor(LockedDoorAidan lockedDoor)
+        public void AddDoor(LockedDoorAidan lockedDoor)
         {
-            _lock = lockedDoor;
+            _locks.Add(lockedDoor);
         }
 
         public bool IsTriggered()

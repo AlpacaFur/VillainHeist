@@ -11,23 +11,23 @@ namespace areas_and_respawn
         public bool SavedState;  // for toggleable object like lights, gates, or moving platforms
 
         protected Renderer Renderer;
-        [SerializeField] [Tooltip("Default/Starting Material")]
-        protected Material regular;
+        // [SerializeField] [Tooltip("Default/Starting Material")]
+        protected Material RegularMaterial;
         [SerializeField] [Tooltip("Interactivity Material / Can be picked up material")]
-        private Material selectedMaterial;
+        protected Material selectedMaterial;
 
         private PlayerController _player;
-
-        protected void Awake()
+        
+        public void SetUp()
         {
             Renderer = GetComponent<MeshRenderer>();
             Renderer.enabled = true;
-            if (regular is not null)
-            {
-                regular = Renderer.material;
-            }
+            RegularMaterial = Renderer.material;
             _player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+            Initialize();
         }
+
+        protected abstract void Initialize();
 
         public abstract void Interact();
 
@@ -48,7 +48,7 @@ namespace areas_and_respawn
                 out RaycastHit hit, _player.interactDistance);
             if (hit.transform != transform)
             {
-                Renderer.material = regular;
+                Renderer.material = RegularMaterial;
             }
         }
     }

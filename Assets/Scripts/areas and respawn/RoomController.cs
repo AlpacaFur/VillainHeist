@@ -15,19 +15,25 @@ namespace areas_and_respawn
         private BoxCollider _boundary;
 
         private BoxCollider _cameraBoundary;
-        
-        private void Start()
+
+        public void SetUp()
         {
+            _boundary = GetComponent<BoxCollider>();
+            _boundary.isTrigger = true;
+            
+            _cameraBoundary = gameObject.AddComponent<BoxCollider>();
+            _cameraBoundary.center = _boundary.center - new Vector3(0, 0, 4.67f);
+            _cameraBoundary.size = _boundary.size;
+            _cameraBoundary.isTrigger = true;
+            
             _subAreas = GetComponentsInChildren<RoomController>();
             foreach (Transform t in transform)
             {
                 if (t.CompareTag($"Interactable"))
                 {
-                    _intractables.Add(t.gameObject.GetComponent<Interactable>());
-                }
-                else if (t.gameObject.TryGetComponent(out RoomController subArea))
-                {
-                    _intractables.AddRange(subArea._intractables);
+                    Interactable interactable = t.gameObject.GetComponent<Interactable>();
+                    interactable.SetUp();
+                    _intractables.Add(interactable);
                 }
             }
         }
@@ -45,17 +51,10 @@ namespace areas_and_respawn
                 _subAreas[i].Reset();
             }
         }
-        
+
         public BoxCollider GetCameraBoundary()
         {
             if (_boundary is not null) return _cameraBoundary;
-            _boundary = GetComponent<BoxCollider>();
-            _boundary.isTrigger = true;
-            
-            _cameraBoundary = gameObject.AddComponent<BoxCollider>();
-            _cameraBoundary.center = _boundary.center - new Vector3(0, 0, 4.67f);
-            _cameraBoundary.size = _boundary.size;
-            _cameraBoundary.isTrigger = true;
             return _cameraBoundary;
         }
     }

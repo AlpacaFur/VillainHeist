@@ -26,7 +26,7 @@ namespace movement_and_Camera_Scripts
         private bool _hasJumped;
         private const float GroundCastDist = 0.15f;
 
-        public Interactable pickedUpItem;
+        public GrabbableItem pickedUpItem;
         [Tooltip("Distance to interact with items")]
         public float interactDistance = 1f;
         public CheckPointController checkpoint;
@@ -184,6 +184,9 @@ namespace movement_and_Camera_Scripts
 
         public void Respawn()
         {
+            GrabbableItem pickedUp = pickedUpItem;
+            pickedUpItem = null;
+            if (pickedUp is not null) pickedUp.Reset();
             checkpoint.Respawn(this);
         }
 
@@ -244,6 +247,6 @@ namespace movement_and_Camera_Scripts
         {
             playerAS2.clip = firstPerson ? firstPersonMusic : topDownMusic;
             playerAS2.Play();
-        } 
+        }
     }
 }

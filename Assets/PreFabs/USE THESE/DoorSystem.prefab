@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7767257029828544251}
   m_Layer: 0
   m_Name: Lock_AB
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1506174334362556826}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.01, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 3.88761}
+  m_LocalPosition: {x: -0, y: 1.01, z: 0.073}
+  m_LocalScale: {x: 0.5, y: 2, z: 4.0333953}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8750789781434709810}
@@ -110,8 +110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094ade751582a4d649c269d34b476cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regular: {fileID: 0}
+  SavedPosition: {x: 0, y: 0, z: 0}
+  SavedRotation: {x: 0, y: 0, z: 0, w: 0}
+  SavedState: 0
   selectedMaterial: {fileID: 0}
+  inverted: 0
   doors:
   - {fileID: 8270475808807715939}
   - {fileID: 7839471106466015464}
@@ -133,7 +136,7 @@ GameObject:
   - component: {fileID: 3555669075850507406}
   m_Layer: 0
   m_Name: block
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -228,7 +231,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f248c1b4ea0614980f4a52e510e793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regular: {fileID: 0}
+  SavedPosition: {x: 0, y: 0, z: 0}
+  SavedRotation: {x: 0, y: 0, z: 0, w: 0}
+  SavedState: 0
   selectedMaterial: {fileID: 2100000, guid: ebb25a95555a347af804cf5e212bb41a, type: 2}
 --- !u!54 &3555669075850507406
 Rigidbody:
@@ -261,7 +266,7 @@ GameObject:
   - component: {fileID: 8750169522017391552}
   m_Layer: 0
   m_Name: plate
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -356,6 +361,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd77c1c701c014e2899d4bfe450c1d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SavedPosition: {x: 0, y: 0, z: 0}
+  SavedRotation: {x: 0, y: 0, z: 0, w: 0}
+  SavedState: 0
+  selectedMaterial: {fileID: 0}
   key: {fileID: 3107136982527685391}
   inverted: 0
 --- !u!1 &6328967517757228313
@@ -454,6 +463,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door_A-B
       objectReference: {fileID: 0}
+    - target: {fileID: 4191013638023093494, guid: 71f9d07b52fd44af590e87ddeb076e8e, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 71f9d07b52fd44af590e87ddeb076e8e, type: 3}
@@ -532,6 +545,10 @@ PrefabInstance:
     - target: {fileID: 4191013638023093494, guid: 71f9d07b52fd44af590e87ddeb076e8e, type: 3}
       propertyPath: m_Name
       value: Door_B-A
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191013638023093494, guid: 71f9d07b52fd44af590e87ddeb076e8e, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
