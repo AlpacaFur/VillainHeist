@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1189212083408224359}
   - component: {fileID: 2823534330627313602}
   - component: {fileID: 57353595229158152}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: enemy-robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,9 +99,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8412143652510129184}
   - component: {fileID: 6906465859039656096}
-  m_Layer: 0
+  - component: {fileID: 6122494330576895629}
+  m_Layer: 6
   m_Name: Guard
-  m_TagString: Untagged
+  m_TagString: Freezable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,6 +141,20 @@ MonoBehaviour:
   range: 2.5
   pauseTime: 1
   pauseOnAll: 0
+--- !u!136 &6122494330576895629
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3464679297419852899}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8135139919415240123
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +166,7 @@ GameObject:
   - component: {fileID: 7423362191521988050}
   - component: {fileID: 957569838935028012}
   - component: {fileID: 5614696908653271143}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +281,7 @@ GameObject:
   - component: {fileID: 6456586900217297811}
   - component: {fileID: 2267163644597736425}
   - component: {fileID: 6529381364076037584}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -17,7 +17,7 @@ public class EscapeTimer : MonoBehaviour
     private Label timerText;
     [SerializeField] private float timerBlinkTime = .1f;
 
-    private void Awake()
+    /*private void Awake()
     {
         if (exists)
         {
@@ -28,11 +28,20 @@ public class EscapeTimer : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             exists = true;
         }
-    }
+    }*/
 
     // Start is called before the first frame update
     void Start()
     {
+        if (exists)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+            exists = true;
+        }
         this.player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerController>();
         totalSecondsRemaining = totalTime;
         StartCoroutine(waitUntilEscape());
