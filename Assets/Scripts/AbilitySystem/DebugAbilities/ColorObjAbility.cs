@@ -23,11 +23,6 @@ public class ColorObjAbility : MonoBehaviour, Ability
         return AbilityInputs.AbilityType.Clickable;
     }
 
-    public string appliedToTag()
-    {
-        return "Untagged";
-    }
-
     public void ApplyTo(GameObject spot)
     {
         spot.GetComponent<Renderer>().material = newMat;

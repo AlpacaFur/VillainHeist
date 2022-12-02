@@ -472,11 +472,11 @@ class AbilityIndexOutOfBoundsException : System.Exception {
 
 }
 
-/*public interface Ability
+public interface Ability
 {
     /**
      * Where this Ability is to be used.
-     *
+     */
     public void ApplyTo(GameObject spot);
 
     public AbilityInputs.AbilityType abilityType3rdPerson();
@@ -508,4 +508,4 @@ public abstract class SelectableObjectAbility : MonoBehaviour, Ability
     public abstract Sprite GetIcon();
 
     public abstract string GetName();
-}*/
+}

@@ -62,9 +62,4 @@ public class PlaceABoxAbility : MonoBehaviour, Ability
     {
         return AbilityInputs.AbilityTarget.Position;
     }
-
-    public string appliedToTag()
-    {
-        throw new System.NotImplementedException();
-    }
 }

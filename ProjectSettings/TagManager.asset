@@ -7,7 +7,6 @@ TagManager:
   - Selectable
   - Start Room
   - Interactable
-  - Freezable
   layers:
   - Default
   - TransparentFX
@@ -18,7 +17,7 @@ TagManager:
   - AbilitySystemRaycast
   - DontShowInMirror
   - MirrorHiddenObj
-  - ShowInSomeMirrors
+  - 
   - 
   - 
   - 
