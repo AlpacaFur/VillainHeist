@@ -22,6 +22,11 @@ public class FreezeAbility : SelectableObjectAbility
         return AbilityInputs.AbilityType.Clickable;
     }
 
+    public override string appliedToTag()
+    {
+        return "Freezable";
+    }
+
     public override void ApplyTo(GameObject spot)
     {
         FreezableObject freezable;

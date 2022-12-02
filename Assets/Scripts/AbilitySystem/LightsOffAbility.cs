@@ -19,6 +19,11 @@ public class LightsOffAbility : SelectableObjectAbility
         return AbilityInputs.AbilityType.Clickable;
     }
 
+    public override string appliedToTag()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void ApplyTo(GameObject spot)
     {
         OvalLightController spotsLight;

@@ -53,4 +53,9 @@ public class ClearTaggedObjsAbility : MonoBehaviour, Ability
     {
         
     }
+
+    public string appliedToTag()
+    {
+        throw new System.NotImplementedException();
+    }
 }
