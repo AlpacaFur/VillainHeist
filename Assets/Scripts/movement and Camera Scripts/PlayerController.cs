@@ -167,6 +167,7 @@ namespace movement_and_Camera_Scripts
             {
                 if (interactable is not null)
                 {
+                    print(interactable.name);
                     interactable.Interact();
                 }
                 else if (pickedUpItem is not null)

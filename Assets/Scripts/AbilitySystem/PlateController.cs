@@ -38,8 +38,11 @@ namespace AbilitySystem
         
         private void OnCollisionExit(Collision collision)
         {
-            _triggered = false ^ inverted;
-            Renderer.material = RegularMaterial;
+            if (collision.transform.TryGetComponent(out GrabbableItem grabbable))
+            {
+                _triggered = false ^ inverted;
+                Renderer.material = RegularMaterial;
+            }
         }
 
         // Update is called once per frame

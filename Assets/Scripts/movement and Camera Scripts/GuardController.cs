@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Linq;
+using AbilitySystem;
+using areas_and_respawn;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
+using Transform = UnityEngine.Transform;
 
 namespace movement_and_Camera_Scripts
 {
@@ -54,7 +57,6 @@ namespace movement_and_Camera_Scripts
             
             player = GameObject.FindWithTag("Player");
             playerController = player.GetComponent<PlayerController>();
-
         }
 
         // Update is called once per frame
@@ -207,6 +209,38 @@ namespace movement_and_Camera_Scripts
             {
                 _animator.SetBool("Sleeping", false);
                 _moving = true;
+            }
+        }
+
+        protected override void Initialize()
+        {
+            // NOTHING
+        }
+
+        public override void Interact()
+        {
+            ToggleFreeze();
+        }
+
+        public override void Save()
+        {
+            Transform t = transform;
+            SavedPosition = t.position;
+            SavedState = isFrozen;
+        }
+
+        public override void Reset()
+        {
+            if (SavedState)
+            {
+                Transform t = transform;
+                t.position = SavedPosition;
+                isFrozen = false;
+                ToggleFreeze();
+            }
+            else
+            {
+                Initialize();
             }
         }
     }
