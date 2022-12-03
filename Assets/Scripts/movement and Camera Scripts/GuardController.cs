@@ -10,7 +10,7 @@ using Transform = UnityEngine.Transform;
 
 namespace movement_and_Camera_Scripts
 {
-    public class GuardController : FreezableObject
+    public class GuardController : Interactable
     {
         public Transform[] points;
         private Vector3[] _vertices;
@@ -196,7 +196,7 @@ namespace movement_and_Camera_Scripts
          * Toggles if this guard is frozen. If they are, they stop moving and no longer are waiting to move.
          * If they are not, they start moving as normal.
          */
-        public override void ToggleFreeze()
+        private void ToggleFreeze()
         {
             isFrozen = !isFrozen;
             if (isFrozen)
@@ -215,6 +215,7 @@ namespace movement_and_Camera_Scripts
         protected override void Initialize()
         {
             // NOTHING
+            print("INITIALIZING ROBOT");
         }
 
         public override void Interact()

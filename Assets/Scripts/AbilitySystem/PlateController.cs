@@ -38,7 +38,7 @@ namespace AbilitySystem
         
         private void OnCollisionExit(Collision collision)
         {
-            if (collision.transform.TryGetComponent(out GrabbableItem grabbable))
+            if (collision.gameObject.CompareTag("Interactable"))
             {
                 _triggered = false ^ inverted;
                 Renderer.material = RegularMaterial;

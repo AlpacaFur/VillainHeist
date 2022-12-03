@@ -32,8 +32,15 @@ namespace areas_and_respawn
                 if (t.CompareTag($"Interactable"))
                 {
                     Interactable interactable = t.gameObject.GetComponent<Interactable>();
-                    interactable.SetUp();
-                    _intractables.Add(interactable);
+                    if (interactable is not null){
+                        print("YES" + interactable.name);
+                        interactable.SetUp();
+                        _intractables.Add(interactable);
+                    }
+                    else
+                    {
+                        print("NO" + t.name);
+                    }
                 }
             }
         }

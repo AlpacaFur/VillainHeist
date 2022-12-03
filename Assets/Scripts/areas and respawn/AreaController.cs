@@ -16,6 +16,7 @@ namespace areas_and_respawn
         private void Start()
         {
             _subRooms = GetComponentsInChildren<RoomController>();
+            print(_subRooms.Length);
             foreach (RoomController subRoom in _subRooms) // call on sub areas
             {
                 subRoom.SetUp();
