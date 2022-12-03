@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: []
+  _animator: {fileID: 8576397759601157199}
   speed: 3
   viewAngle: 30
   range: 2.5
@@ -128,5 +129,10 @@ PrefabInstance:
 --- !u!4 &8576397759203263159 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2227542193913324101, guid: 47bff42f16e88574197a2fe90e1e7309, type: 3}
+  m_PrefabInstance: {fileID: 7632666234955342066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8576397759601157199 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2227542194323588285, guid: 47bff42f16e88574197a2fe90e1e7309, type: 3}
   m_PrefabInstance: {fileID: 7632666234955342066}
   m_PrefabAsset: {fileID: 0}
