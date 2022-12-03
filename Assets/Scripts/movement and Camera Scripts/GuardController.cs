@@ -19,6 +19,9 @@ namespace movement_and_Camera_Scripts
         private GameObject player;
         private PlayerController playerController;
         
+        [SerializeField]
+        private Animator _animator;
+        
         [SerializeField] private float speed;
         [SerializeField] private float viewAngle;
         [SerializeField] private float range;
@@ -90,6 +93,7 @@ namespace movement_and_Camera_Scripts
             {
                 if (hit.transform == player.transform)
                 {
+                    _animator.SetTrigger("Alert");
                     Debug.Log("HIT");
                     playerController.Respawn();
                 }
@@ -101,6 +105,7 @@ namespace movement_and_Camera_Scripts
             Debug.DrawRay(transform.position + Vector3.up, toTarget.normalized * range, Color.green);
             if (Physics.Raycast(transform.position + Vector3.up, toTarget, out RaycastHit hit, range))
             {
+                _animator.SetTrigger("Alert");
                 if (hit.transform == player.transform)
                 {
                     Debug.Log("HIT");
@@ -194,11 +199,13 @@ namespace movement_and_Camera_Scripts
             isFrozen = !isFrozen;
             if (isFrozen)
             {
+                _animator.SetBool("Sleeping", true);
                 CancelInvoke(nameof(StartMoving));
                 _moving = false;
             }
             else
             {
+                _animator.SetBool("Sleeping", false);
                 _moving = true;
             }
         }
