@@ -48,6 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d135af2b35d4c7a980fff16acb3867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SavedPosition: {x: 0, y: 0, z: 0}
+  SavedRotation: {x: 0, y: 0, z: 0, w: 0}
+  SavedState: 0
+  selectedMaterial: {fileID: 2100000, guid: c2e16a6974b37a344b986c36a77b8630, type: 2}
   goToTransform:
   - {fileID: 0}
   speed: 5
