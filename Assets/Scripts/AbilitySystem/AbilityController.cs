@@ -8,7 +8,7 @@ public class AbilityController : MonoBehaviour
 	private PlayerController player;
     [Header("Ability Start")]
     [SerializeField]
-    private string buttonToActivate = "Fire3";
+    private string keyToActivate = "e";
     [SerializeField] private float maxRange = 3;
     [Header("Abilities")]
     private Ability[] abilities;
@@ -128,7 +128,7 @@ public class AbilityController : MonoBehaviour
 
     private void checkInteract()
     {
-        if ((curSelectedObj != null) && Input.GetButtonDown(buttonToActivate) && bat.hasLeft(cost))
+        if ((curSelectedObj != null) && Input.GetKeyDown(keyToActivate) && bat.hasLeft(cost))
         {
             interactibleTagToAbility[curSelectedObj.tag].ApplyTo(curSelectedObj);
             bat.subFromCurrent(cost);

@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="graphic" style="justify-content: center; align-items: center; flex-grow: 1; flex-direction: column-reverse; -unity-text-align: upper-center;">
+        <ui:Label text="Escape Failure" display-tooltip-when-elided="true" name="title" style="font-size: 160px; color: rgb(255, 0, 2); -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Electronic%20Highway%20Sign.TTF?fileID=12800000&amp;guid=8a2b9e2a607dd2143b58c44bc32410b4&amp;type=3#Electronic Highway Sign&apos;); -unity-font-definition: none; top: auto; -unity-font-style: normal; justify-content: flex-start; bottom: 360px;" />
+        <ui:Button text="Restart" display-tooltip-when-elided="true" enable-rich-text="false" name="restartButton" style="top: 200px; font-size: 100px; -unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Bangers.ttf?fileID=12800000&amp;guid=5dd49b3eacc540408c98eee0de38e0f1&amp;type=3#Bangers&apos;); -unity-font-definition: none;" />
+    </ui:VisualElement>
+</ui:UXML>

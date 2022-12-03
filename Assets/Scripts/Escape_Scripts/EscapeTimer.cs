@@ -16,6 +16,12 @@ public class EscapeTimer : MonoBehaviour
     [SerializeField] private string timerName = "timer";
     private Label timerText;
     [SerializeField] private float timerBlinkTime = .1f;
+    [Header("Failure UI")]
+    [SerializeField] private UIDocument failureUI;
+    [SerializeField] private string restartButtonName = "restartButton";
+    [SerializeField] private string graphicName = "graphic";
+    private Button restartButton;
+    private VisualElement failureGraphic;
 
     /*private void Awake()
     {
@@ -45,9 +51,15 @@ public class EscapeTimer : MonoBehaviour
         this.player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerController>();
         totalSecondsRemaining = totalTime;
         StartCoroutine(waitUntilEscape());
-        VisualElement root = timerUi.rootVisualElement;
-        timerText = root.Q<Label>(timerName);
+        VisualElement timerRoot = timerUi.rootVisualElement;
+        timerText = timerRoot.Q<Label>(timerName);
         showTimer(false);
+
+        VisualElement failureRoot = failureUI.rootVisualElement;
+        restartButton = failureRoot.Q<Button>(restartButtonName);
+        restartButton.clicked += (() => Debug.Log("restart"));
+        failureGraphic = failureRoot.Q<VisualElement>(graphicName);
+        showFailure(false);
     }
 
     private IEnumerator waitUntilEscape()
@@ -67,6 +79,18 @@ public class EscapeTimer : MonoBehaviour
         else
         {
             timerText.style.display = DisplayStyle.None;
+        }
+    }
+
+    private void showFailure(bool show)
+    {
+        if (show)
+        {
+            failureGraphic.style.display = DisplayStyle.Flex;
+        }
+        else
+        {
+            failureGraphic.style.display = DisplayStyle.None;
         }
     }
 
@@ -139,7 +163,8 @@ public class EscapeTimer : MonoBehaviour
         {
             // Failure Script
             Time.timeScale = 0;
-            // To be implemented
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+            showFailure(true);
         }
     }
 }
