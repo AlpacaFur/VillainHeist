@@ -15,12 +15,13 @@ namespace areas_and_respawn
         private bool _isSpawn;
 
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             _spawnPoint = transform;
             _room = GetComponentInParent<RoomController>();
             _area = GetComponentInParent<AreaController>();
             _isSpawn = _room is null;
+            if (_isSpawn) _room = GameObject.FindWithTag("Start Room").GetComponent<RoomController>();
         }
 
         public void Respawn(PlayerController player)

@@ -7,7 +7,7 @@ namespace AbilitySystem
 {
     public class GrabbableItem : Interactable
     {
-        private PlayerController _player;
+        private PlayerController _playerController;
 
         private float originalY;
 
@@ -22,27 +22,25 @@ namespace AbilitySystem
         // public float playerYRot;
         
         // [SerializeField] private Renderer rend;
-    
-        // Start is called before the first frame update
-        void Start()
+        
+        protected override void Initialize()
         {
             // rend = GetComponent<MeshRenderer>();
             // regular = Renderer.material;
             // rend.enabled = true;
             _isPickedUp = false;
             this.originalY = this.transform.position.y;
-            _player = FindObjectOfType<PlayerController>();
+            _playerController = FindObjectOfType<PlayerController>();
             _rigidbody = GetComponent<Rigidbody>();
             
-            _rigidbody.constraints = RigidbodyConstraints.FreezePositionX | 
+            _rigidbody.constraints = RigidbodyConstraints.FreezePositionX |
                                      RigidbodyConstraints.FreezePositionZ |
                                      RigidbodyConstraints.FreezeRotation;
         }
-        
 
         void PickUp()
         {
-            this.transform.position = this._player.transform.position + new Vector3(0.0f, 20.0f, 0.0f);
+            this.transform.position = this._playerController.transform.position + new Vector3(0.0f, 20.0f, 0.0f);
             Renderer.enabled = false;
             this._isPickedUp = true;
             _rigidbody.isKinematic = true;
@@ -50,11 +48,12 @@ namespace AbilitySystem
 
         void PutDown()
         {
-            float pickUpDistance = _player.interactDistance;
-            Transform playerTransform = this._player.transform;
+            float pickUpDistance = _playerController.interactDistance;
+            Transform playerTransform = this._playerController.transform;
             Renderer.enabled = true;
-            this.transform.position = playerTransform.position + playerTransform.forward * pickUpDistance +
-                                      new Vector3(0, -playerTransform.position.y + originalY + 0.5f, 0);
+            Vector3 position = playerTransform.position;
+            this.transform.position = position + playerTransform.forward * pickUpDistance +
+                                      new Vector3(0, -position.y + originalY + 0.5f, 0);
             this._isPickedUp = false;
             _rigidbody.isKinematic = false;
         }
@@ -63,17 +62,17 @@ namespace AbilitySystem
         {
             if (_isPickedUp)
             {
-                if (_player.pickedUpItem == this)
+                if (_playerController.pickedUpItem == this)
                 {
-                    _player.pickedUpItem = null;
+                    _playerController.pickedUpItem = null;
                     PutDown();
                 }
             }
             else
             {
-                if (_player.pickedUpItem is null)
+                if (_playerController.pickedUpItem is null)
                 {
-                    _player.pickedUpItem = this;
+                    _playerController.pickedUpItem = this;
                     PickUp();
                 }
             }
@@ -92,7 +91,7 @@ namespace AbilitySystem
             _isPickedUp = SavedState;
             if (_isPickedUp)
             {
-                _player.pickedUpItem = this;
+                _playerController.pickedUpItem = this;
                 PickUp();
             }
             else

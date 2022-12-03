@@ -18,13 +18,13 @@ namespace areas_and_respawn
         
         private bool _displaying;
 
-        private void Start()
+        protected override void Initialize()
         {
             foreach (PlateController trigger in triggers)
             {
-                trigger.SetDoor(this);
+                trigger.AddDoor(this);
+                trigger.SetUp();
             }
-            TryUnlock();
         }
 
         public void TryUnlock()
@@ -32,9 +32,9 @@ namespace areas_and_respawn
             bool checkTriggers = true;
             foreach (PlateController trigger in triggers)
             {
-                checkTriggers &= trigger.IsTriggered();
+                checkTriggers &= trigger.IsTriggered() ^ inverted;
             }
-            _isLocked = !checkTriggers ^ inverted;
+            _isLocked = !checkTriggers;
             gameObject.SetActive(_isLocked);
             foreach (DoorController door in doors)
             {
@@ -46,13 +46,16 @@ namespace areas_and_respawn
 
         public override void Save()
         {
-            print("SAVED");
             SavedState = _isLocked;
         }
 
         public override void Reset()
         {
             _isLocked = SavedState;
+            foreach (DoorController door in doors)
+            {
+                door.Lock(_isLocked);
+            }
         }
 
         public override void InRange()
@@ -61,7 +64,7 @@ namespace areas_and_respawn
             {
                 _displaying = true;
                 //TODO: send message that door is locked
-                Debug.Log("LOCKED");
+                print("LOCKED");
                 Invoke(nameof(OutOfRange), 2f);
             }
         }

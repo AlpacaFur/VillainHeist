@@ -19,7 +19,7 @@ namespace areas_and_respawn
 
         private bool _isLocked;
 
-        private void Start()
+        private void Awake()
         {
             _enterPosition = GetComponentsInChildren<Transform>()[1];
             _room = GetComponentInParent<RoomController>();
@@ -31,7 +31,6 @@ namespace areas_and_respawn
         {
             if (other.CompareTag("Player"))
             {
-                _room.Save();
                 otherDoor.Teleport();
             }
         }
