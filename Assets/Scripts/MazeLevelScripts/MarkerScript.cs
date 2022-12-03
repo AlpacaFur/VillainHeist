@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using areas_and_respawn;
 using movement_and_Camera_Scripts;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -17,7 +18,7 @@ public class MarkerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Villain_Player");
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -29,4 +30,26 @@ public class MarkerScript : MonoBehaviour
             GetComponent<Renderer>().enabled = false;
         }
     }
+
+    /*
+    protected override void Initialize()
+    {
+        player = GameObject.FindWithTag("Player");
+    }
+
+    public override void Interact()
+    {
+        // call move all connected walls
+    }
+
+    public override void Save()
+    {
+        // SavedState = currentState
+        //currentstate is the bool that hold walls being up/down
+    }
+
+    public override void Reset()
+    {
+        //currentState = SavedState
+    } */
 }
