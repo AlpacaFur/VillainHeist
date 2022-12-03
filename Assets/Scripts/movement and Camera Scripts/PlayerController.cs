@@ -153,11 +153,15 @@ namespace movement_and_Camera_Scripts
             // Interact with objects
             Interactable interactable = null;
 
+            Debug.DrawLine(transform.position + Vector3.up / 2, (transform.position + Vector3.up / 2) + transform.forward * interactDistance, Color.red);
             if (Physics.Raycast(transform.position + Vector3.up / 2, transform.forward,
                     out RaycastHit hit, interactDistance))
             {
-                if (hit.transform.TryGetComponent(out Interactable inRange))
+                //Debug.Log("name = " + hit.collider.name);
+                if (hit.collider.CompareTag("Interactable"))//hit.transform.TryGetComponent(out Interactable inRange))
                 {
+                    Debug.Log("name = " + hit.collider.name);
+                    Interactable inRange = hit.transform.GetComponent<Interactable>();
                     interactable = inRange;
                     interactable.InRange();
                 }
@@ -167,7 +171,6 @@ namespace movement_and_Camera_Scripts
             {
                 if (interactable is not null)
                 {
-                    print(interactable.name);
                     interactable.Interact();
                 }
                 else if (pickedUpItem is not null)

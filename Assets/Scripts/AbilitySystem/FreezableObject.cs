@@ -1,10 +1,9 @@
-using areas_and_respawn;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using areas_and_respawn;
 
-namespace AbilitySystem
+public abstract class FreezableObject : Interactable
 {
-    public abstract class FreezableObject : Interactable
-    {
-        public abstract void ToggleFreeze();
-    }
+    public abstract void ToggleFreeze();
 }

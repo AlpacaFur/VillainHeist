@@ -20,7 +20,7 @@ namespace areas_and_respawn
         
         public void SetUp()
         {
-            Renderer = GetComponent<MeshRenderer>();
+            Renderer = GetComponentInChildren<Renderer>();
             Renderer.enabled = true;
             RegularMaterial = Renderer.material;
             _player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
