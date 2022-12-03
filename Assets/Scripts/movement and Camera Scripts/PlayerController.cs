@@ -43,6 +43,8 @@ namespace movement_and_Camera_Scripts
         
         //AS2 is for Music
         private AudioSource playerAS2;
+
+        private Animator _animator;
         
         [SerializeField]
         private ParticleSystem tazeFlash;
@@ -60,6 +62,8 @@ namespace movement_and_Camera_Scripts
             playerAS1.volume = 1f;
             playerAS1.spatialBlend = 0f;
 
+            _animator = GetComponent<Animator>();
+            
             playerAS2 = GetComponents<AudioSource>()[1];
             playerAS2.volume = 2f;
             playerAS2.spatialBlend = 0f;
@@ -126,11 +130,13 @@ namespace movement_and_Camera_Scripts
 
                 if (movement.magnitude > 0)
                 {
+                    _animator.SetBool("Walking", true);
                     playerTransform.rotation = Quaternion.AngleAxis(
                         Vector3.SignedAngle(Vector3.forward, movement, Vector3.up), Vector3.up);
                 }
                 else
                 {
+                    _animator.SetBool("Walking", false);
                     float angle = Vector3.SignedAngle(Vector3.forward, playerTransform.forward, Vector3.up);
                     angle = (int)(angle % 360 / 90) * 90;
                     playerTransform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
