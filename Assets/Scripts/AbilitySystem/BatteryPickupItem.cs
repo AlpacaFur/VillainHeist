@@ -21,7 +21,7 @@ namespace AbilitySystem
 
         [SerializeField]
         [Tooltip("Distance Until the item is picked up")]
-        private float killDistance;
+        public float killDistance;
 
 
 
@@ -36,16 +36,16 @@ namespace AbilitySystem
 
         private void OnDestroy()
         {
-            this.bat.addToCurrent(2);
+           this.bat.addToCurrent(2);
         }
 
         // Update is called once per frame
         void Update()
         {
             if ( Vector3.Distance(killGuy.transform.position, this.transform.position) < this.killDistance)
-            {
-                Destroy(this.gameObject);
-            }
+                {
+                    Destroy(this.gameObject);
+                }
         }
     }
 }

@@ -19,7 +19,7 @@ namespace AbilitySystem
             return AbilityInputs.AbilityType.Clickable;
         }
 
-        public override string appliedToTag()
+        public string appliedToTag()
         {
             throw new System.NotImplementedException();
         }
