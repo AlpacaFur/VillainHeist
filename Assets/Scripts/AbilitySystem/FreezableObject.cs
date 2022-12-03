@@ -1,8 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using areas_and_respawn;
 using UnityEngine;
 
-public abstract class FreezableObject : MonoBehaviour
+namespace AbilitySystem
 {
-    public abstract void ToggleFreeze();
+    public abstract class FreezableObject : Interactable
+    {
+        public abstract void ToggleFreeze();
+    }
 }
