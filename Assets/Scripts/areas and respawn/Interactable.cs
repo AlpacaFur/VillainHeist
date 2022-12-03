@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using movement_and_Camera_Scripts;
 using UnityEngine;
 
@@ -10,9 +12,9 @@ namespace areas_and_respawn
         public Quaternion SavedRotation;
         public bool SavedState;  // for toggleable object like lights, gates, or moving platforms
 
-        protected Renderer Renderer;
+        protected List<Renderer> Renderers = new();
         // [SerializeField] [Tooltip("Default/Starting Material")]
-        protected Material RegularMaterial;
+        protected List<Material[]> RegularMaterials = new();
         [SerializeField] [Tooltip("Interactivity Material / Can be picked up material")]
         protected Material selectedMaterial;
 
@@ -20,9 +22,12 @@ namespace areas_and_respawn
         
         public void SetUp()
         {
-            Renderer = GetComponentInChildren<Renderer>();
-            Renderer.enabled = true;
-            RegularMaterial = Renderer.material;
+            Renderers = GetComponentsInChildren<Renderer>().ToList();
+            foreach (Renderer rend in Renderers)
+            {
+                rend.enabled = true;
+                RegularMaterials.Add(rend.materials);
+            }
             _player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
             Initialize();
         }
@@ -37,7 +42,7 @@ namespace areas_and_respawn
 
         public virtual void InRange()
         {
-            Renderer.material = selectedMaterial;
+            SetSelectedMaterials();
             Invoke(nameof(OutOfRange), 1f);
         }
 
@@ -48,7 +53,35 @@ namespace areas_and_respawn
                 out RaycastHit hit, _player.interactDistance);
             if (hit.transform != transform)
             {
-                Renderer.material = RegularMaterial;
+                SetRegularMaterials();
+            }
+        }
+
+        protected void SetRegularMaterials()
+        {
+            foreach (Renderer rend in Renderers)
+            {
+                int index = Renderers.IndexOf(rend);
+                rend.materials = RegularMaterials[index];
+            }
+        }
+
+        protected void SetSelectedMaterials()
+        {
+            foreach (Renderer rend in Renderers)
+            {
+                int matLen = rend.materials.Length;
+                Material[] mats = new Material[matLen];
+                Array.Fill(mats, selectedMaterial);
+                rend.materials = mats;
+            }
+        }
+
+        protected void SetRenderers(bool isEnabled)
+        {
+            foreach (Renderer rend in Renderers)
+            {
+                rend.enabled = isEnabled;
             }
         }
     }

@@ -31,7 +31,7 @@ namespace AbilitySystem
                 if (grabbable == key)
                 {
                     _triggered = true ^ inverted;
-                    Renderer.material = selectedMaterial;
+                    SetSelectedMaterials();
                 }
             }
         }
@@ -41,7 +41,7 @@ namespace AbilitySystem
             if (collision.gameObject.CompareTag("Interactable"))
             {
                 _triggered = false ^ inverted;
-                Renderer.material = RegularMaterial;
+                SetRegularMaterials();
             }
         }
 

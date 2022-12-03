@@ -41,7 +41,7 @@ namespace AbilitySystem
         void PickUp()
         {
             this.transform.position = this._playerController.transform.position + new Vector3(0.0f, 20.0f, 0.0f);
-            Renderer.enabled = false;
+            SetRenderers(false);
             this._isPickedUp = true;
             _rigidbody.isKinematic = true;
         }
@@ -50,7 +50,7 @@ namespace AbilitySystem
         {
             float pickUpDistance = _playerController.interactDistance;
             Transform playerTransform = this._playerController.transform;
-            Renderer.enabled = true;
+            SetRenderers(true);
             Vector3 position = playerTransform.position;
             this.transform.position = position + playerTransform.forward * pickUpDistance +
                                       new Vector3(0, -position.y + originalY + 0.5f, 0);
